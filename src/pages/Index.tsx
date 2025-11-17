@@ -62,6 +62,18 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Pickup Info Section */}
+      <section className="py-12 px-4 bg-primary/10 border-y-2 border-primary/20">
+        <div className="container mx-auto text-center">
+          <h3 className="text-3xl font-bold mb-4 text-primary">
+            {t.pickup.title}
+          </h3>
+          <p className="text-lg text-muted-foreground">
+            {t.pickup.description}
+          </p>
+        </div>
+      </section>
+
       {/* Pizzas Section */}
       <section id="pizzas" className="py-20 px-4">
         <div className="container mx-auto">

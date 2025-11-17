@@ -28,7 +28,6 @@ export const CartSheet = ({ open, onClose }: CartSheetProps) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    address: '',
     payment: 'cash',
     notes: ''
   });
@@ -42,15 +41,14 @@ export const CartSheet = ({ open, onClose }: CartSheetProps) => {
   };
 
   const handleSendWhatsApp = () => {
-    if (!formData.name || !formData.phone || !formData.address) {
+    if (!formData.name || !formData.phone) {
       toast.error('Preencha todos os campos obrigatórios!');
       return;
     }
 
-    let message = `🍕 *NOVO PEDIDO* 🍕\n\n`;
+    let message = `🍕 *NOVO PEDIDO - RETIRADA NO LOCAL* 🍕\n\n`;
     message += `*Cliente:* ${formData.name}\n`;
     message += `*Telefone:* ${formData.phone}\n`;
-    message += `*Endereço:* ${formData.address}\n`;
     message += `*Pagamento:* ${formData.payment === 'cash' ? 'Dinheiro' : formData.payment === 'card' ? 'Cartão' : 'PIX'}\n\n`;
     message += `*ITENS DO PEDIDO:*\n`;
     
@@ -174,16 +172,6 @@ export const CartSheet = ({ open, onClose }: CartSheetProps) => {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="(11) 99999-9999"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="address">{t.checkout.address} *</Label>
-                <Textarea
-                  id="address"
-                  value={formData.address}
-                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                  placeholder="Rua, número, bairro, complemento"
                 />
               </div>
 
