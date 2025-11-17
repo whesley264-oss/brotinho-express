@@ -7,6 +7,11 @@ export const translations = {
       subtitle: "As melhores mini pizzas da cidade, feitas com ingredientes frescos e muito amor!",
       cta: "Ver Cardápio"
     },
+    pickup: {
+      title: "Retirada no Local",
+      description: "Não fazemos entregas. Faça seu pedido e venha buscar quentinho!",
+      info: "Retire seu pedido em nosso estabelecimento"
+    },
     nav: {
       pizzas: "Pizzas",
       drinks: "Bebidas",
@@ -40,10 +45,9 @@ export const translations = {
       or: "ou"
     },
     checkout: {
-      title: "Informações para Entrega",
+      title: "Informações do Pedido",
       name: "Nome completo",
       phone: "Telefone",
-      address: "Endereço completo",
       payment: "Forma de pagamento",
       paymentCash: "Dinheiro",
       paymentCard: "Cartão",
@@ -57,6 +61,11 @@ export const translations = {
       title: "Delicious Mini Pizzas",
       subtitle: "The best mini pizzas in town, made with fresh ingredients and lots of love!",
       cta: "View Menu"
+    },
+    pickup: {
+      title: "Pickup Only",
+      description: "We don't deliver. Place your order and pick it up hot!",
+      info: "Pick up your order at our location"
     },
     nav: {
       pizzas: "Pizzas",
@@ -91,10 +100,9 @@ export const translations = {
       or: "or"
     },
     checkout: {
-      title: "Delivery Information",
+      title: "Order Information",
       name: "Full name",
       phone: "Phone",
-      address: "Full address",
       payment: "Payment method",
       paymentCash: "Cash",
       paymentCard: "Card",
@@ -108,6 +116,11 @@ export const translations = {
       title: "Mini Pizzas Deliciosas",
       subtitle: "¡Las mejores mini pizzas de la ciudad, hechas con ingredientes frescos y mucho amor!",
       cta: "Ver Menú"
+    },
+    pickup: {
+      title: "Solo Retiro",
+      description: "No hacemos entregas. ¡Haz tu pedido y recógelo caliente!",
+      info: "Recoge tu pedido en nuestro establecimiento"
     },
     nav: {
       pizzas: "Pizzas",
@@ -142,10 +155,9 @@ export const translations = {
       or: "o"
     },
     checkout: {
-      title: "Información de Entrega",
+      title: "Información del Pedido",
       name: "Nombre completo",
       phone: "Teléfono",
-      address: "Dirección completa",
       payment: "Método de pago",
       paymentCash: "Efectivo",
       paymentCard: "Tarjeta",

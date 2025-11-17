@@ -12,9 +12,19 @@ export const addons: Addon[] = [
     price: 2.00
   },
   {
-    id: 'bacon',
-    name: { pt: 'Bacon', en: 'Bacon', es: 'Tocino' },
-    price: 4.00
+    id: 'egg',
+    name: { pt: 'Ovo', en: 'Egg', es: 'Huevo' },
+    price: 2.50
+  },
+  {
+    id: 'corn',
+    name: { pt: 'Milho', en: 'Corn', es: 'Maíz' },
+    price: 2.00
+  },
+  {
+    id: 'tomato',
+    name: { pt: 'Tomate', en: 'Tomato', es: 'Tomate' },
+    price: 1.50
   },
   {
     id: 'onion',
@@ -117,6 +127,30 @@ export const products: Product[] = [
     },
     price: 4.00,
     image: '/drinks/fanta.jpg',
+    category: 'drink'
+  },
+  {
+    id: 'drink-water',
+    name: { pt: 'Água Mineral 500ml', en: 'Mineral Water 500ml', es: 'Agua Mineral 500ml' },
+    description: { 
+      pt: 'Água mineral gelada',
+      en: 'Cold mineral water',
+      es: 'Agua mineral fría'
+    },
+    price: 3.00,
+    image: '/drinks/water.jpg',
+    category: 'drink'
+  },
+  {
+    id: 'drink-lemon',
+    name: { pt: 'Refrigerante Limão 250ml', en: 'Lemon Soda 250ml', es: 'Refresco de Limón 250ml' },
+    description: { 
+      pt: 'Refrigerante gelado sabor limão',
+      en: 'Cold lemon flavored soda',
+      es: 'Refresco frío sabor limón'
+    },
+    price: 4.00,
+    image: '/drinks/lemon.jpg',
     category: 'drink'
   },
   // Combos
