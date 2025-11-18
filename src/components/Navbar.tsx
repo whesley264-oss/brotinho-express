@@ -22,12 +22,12 @@ export const Navbar = ({ onCartClick }: NavbarProps) => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border animate-fade-in">
+      <div className="container mx-auto px-4 py-3 md:py-4">
+        <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <Pizza className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            <Pizza className="h-6 w-6 md:h-8 md:w-8 text-primary animate-pulse" />
+            <span className="text-xl md:text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
               Brotinhos
             </span>
           </div>
@@ -59,16 +59,17 @@ export const Navbar = ({ onCartClick }: NavbarProps) => {
             </button>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 md:gap-2">
             <ThemeToggle />
             <LanguageToggle />
             <Button
               onClick={onCartClick}
-              className="relative bg-gradient-primary hover:opacity-90 transition-all"
+              size="sm"
+              className="relative bg-gradient-primary hover:opacity-90 transition-all hover:scale-105"
             >
-              <ShoppingCart className="h-5 w-5" />
+              <ShoppingCart className="h-4 w-4 md:h-5 md:w-5" />
               {itemCount > 0 && (
-                <Badge className="absolute -top-2 -right-2 h-6 w-6 flex items-center justify-center p-0 bg-secondary text-secondary-foreground">
+                <Badge className="absolute -top-2 -right-2 h-5 w-5 md:h-6 md:w-6 flex items-center justify-center p-0 bg-secondary text-secondary-foreground animate-scale-in">
                   {itemCount}
                 </Badge>
               )}
