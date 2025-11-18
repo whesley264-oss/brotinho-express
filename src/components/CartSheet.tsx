@@ -29,7 +29,6 @@ export const CartSheet = ({ open, onClose }: CartSheetProps) => {
     name: '',
     phone: '',
     payment: 'cash',
-    pickupTime: '',
     notes: ''
   });
 
@@ -51,9 +50,6 @@ export const CartSheet = ({ open, onClose }: CartSheetProps) => {
     message += `*Cliente:* ${formData.name}\n`;
     message += `*Telefone:* ${formData.phone}\n`;
     message += `*Pagamento:* ${formData.payment === 'cash' ? 'Dinheiro' : formData.payment === 'card' ? 'Cartão' : 'PIX'}\n`;
-    if (formData.pickupTime) {
-      message += `*Horário de Retirada:* ${formData.pickupTime}\n`;
-    }
     message += `\n`;
     message += `*ITENS DO PEDIDO:*\n`;
     
@@ -195,17 +191,6 @@ export const CartSheet = ({ open, onClose }: CartSheetProps) => {
                     <SelectItem value="pix">{t.checkout.paymentPix}</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
-
-              <div>
-                <Label htmlFor="pickupTime" className="text-sm sm:text-base">{t.checkout.pickupTime}</Label>
-                <Input
-                  id="pickupTime"
-                  type="time"
-                  value={formData.pickupTime}
-                  onChange={(e) => setFormData({ ...formData, pickupTime: e.target.value })}
-                  className="text-sm sm:text-base"
-                />
               </div>
 
               <div>
