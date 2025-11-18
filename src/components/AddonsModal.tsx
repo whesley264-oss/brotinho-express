@@ -45,50 +45,50 @@ export const AddonsModal = ({ product, open, onClose, onConfirm }: AddonsModalPr
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-lg bg-card">
-        <DialogHeader>
-          <DialogTitle className="text-2xl">{t.addons.title}</DialogTitle>
-          <DialogDescription>{t.addons.description}</DialogDescription>
+      <DialogContent className="max-w-lg bg-card flex flex-col max-h-[90vh] sm:max-h-[85vh]">
+        <DialogHeader className="flex-shrink-0">
+          <DialogTitle className="text-xl sm:text-2xl">{t.addons.title}</DialogTitle>
+          <DialogDescription className="text-sm sm:text-base">{t.addons.description}</DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4 py-4">
-          <div className="flex items-center gap-4 p-4 bg-muted rounded-lg">
+        <div className="space-y-4 py-4 overflow-y-auto flex-1">
+          <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-muted rounded-lg">
             <img
               src={product.image}
               alt={product.name[language]}
-              className="w-20 h-20 object-cover rounded"
+              className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded flex-shrink-0"
             />
             <div>
-              <h4 className="font-bold">{product.name[language]}</h4>
-              <p className="text-sm text-muted-foreground">R$ {product.price.toFixed(2)}</p>
+              <h4 className="font-bold text-sm sm:text-base">{product.name[language]}</h4>
+              <p className="text-xs sm:text-sm text-muted-foreground">R$ {product.price.toFixed(2)}</p>
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             {addons.map(addon => (
               <div
                 key={addon.id}
-                className="flex items-center justify-between p-3 border border-border rounded-lg hover:border-primary transition-colors cursor-pointer"
+                className="flex items-center justify-between p-2 sm:p-3 border border-border rounded-lg hover:border-primary transition-colors cursor-pointer"
                 onClick={() => toggleAddon(addon)}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <Checkbox
                     checked={selectedAddons.some(a => a.id === addon.id)}
                     onCheckedChange={() => toggleAddon(addon)}
                   />
-                  <span className="font-medium">{addon.name[language]}</span>
+                  <span className="font-medium text-sm sm:text-base">{addon.name[language]}</span>
                 </div>
-                <span className="text-primary font-bold">+ R$ {addon.price.toFixed(2)}</span>
+                <span className="text-primary font-bold text-sm sm:text-base">+ R$ {addon.price.toFixed(2)}</span>
               </div>
             ))}
           </div>
 
           {selectedAddons.length > 0 && (
-            <div className="p-4 bg-primary/10 rounded-lg">
-              <p className="text-sm text-muted-foreground mb-2">
+            <div className="p-3 sm:p-4 bg-primary/10 rounded-lg">
+              <p className="text-xs sm:text-sm text-muted-foreground mb-2">
                 {selectedAddons.length} {t.addons.selected}
               </p>
-              <p className="text-xl font-bold text-primary">
+              <p className="text-lg sm:text-xl font-bold text-primary">
                 Total: R$ {totalPrice.toFixed(2)}
               </p>
             </div>
@@ -97,9 +97,9 @@ export const AddonsModal = ({ product, open, onClose, onConfirm }: AddonsModalPr
 
         <Button
           onClick={handleConfirm}
-          className="w-full bg-gradient-primary hover:opacity-90 text-lg py-6"
+          className="w-full bg-gradient-primary hover:opacity-90 text-base sm:text-lg py-5 sm:py-6 flex-shrink-0 mt-2"
         >
-          <ShoppingCart className="h-5 w-5 mr-2" />
+          <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
           {t.addons.confirm}
         </Button>
       </DialogContent>

@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#ff6b35" />
+    
+    <!-- Primary Meta Tags -->
     <title>Brotinhos - Mini Pizzas Artesanais | Retirada no Local | (73) 9 9112-0178</title>
+    <meta name="title" content="Brotinhos - Mini Pizzas Artesanais | Retirada no Local | (73) 9 9112-0178" />
     <meta name="description" content="Mini pizzas artesanais de mussarela, calabresa, mista e milho. Faça seu pedido pelo WhatsApp e retire no local. Bebidas, combos e promoções. Melhor custo-benefício!" />
     <meta name="author" content="Brotinhos Pizzaria" />
     <meta name="keywords" content="brotinhos, mini pizza, pizza artesanal, retirada no local, calabresa, mussarela, milho, combos pizza, promoção pizza, whatsapp pedido, pizzaria" />
@@ -25,9 +28,101 @@
     <meta name="twitter:description" content="Mini pizzas deliciosas! Peça já pelo WhatsApp (73) 9 9112-0178" />
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80" />
 
+    <!-- PWA -->
+    <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
     <!-- Performance & SEO -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Brotinhos - Mini Pizzas Artesanais",
+      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80",
+      "description": "Mini pizzas artesanais de alta qualidade. Faça seu pedido pelo WhatsApp e retire no local.",
+      "servesCuisine": "Pizza",
+      "priceRange": "R$",
+      "telephone": "+5573991120178",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "BR"
+      },
+      "hasMenu": {
+        "@type": "Menu",
+        "hasMenuSection": [
+          {
+            "@type": "MenuSection",
+            "name": "Mini Pizzas",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Mini Pizza de Mussarela",
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": "BRL"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Mini Pizza de Calabresa",
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": "BRL"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Mini Pizza Mista",
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": "BRL"
+                }
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Mini Pizza de Milho",
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": "BRL"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Bebidas",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Refrigerante 250ml"
+              }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Combos"
+          }
+        ]
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Brotinhos",
+      "telephone": "+5573991120178",
+      "url": "https://brotinhos.lovable.app",
+      "priceRange": "R$",
+      "servesCuisine": "Pizza"
+    }
+    </script>
   </head>
 
   <body>
