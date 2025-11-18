@@ -40,47 +40,47 @@ const Index = () => {
       <Navbar onCartClick={() => setShowCart(true)} />
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden pt-16">
         <div className="absolute inset-0 bg-gradient-hero opacity-90" />
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1920')] bg-cover bg-center mix-blend-overlay opacity-20" />
         
-        <div className="relative z-10 text-center px-4 animate-fade-in-up">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
+        <div className="relative z-10 text-center px-4 sm:px-6 animate-fade-in">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 text-foreground leading-tight">
             {t.hero.title}
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-muted-foreground max-w-2xl mx-auto px-2">
             {t.hero.subtitle}
           </p>
           <Button
             onClick={() => document.getElementById('pizzas')?.scrollIntoView({ behavior: 'smooth' })}
             size="lg"
-            className="bg-gradient-primary hover:opacity-90 text-lg px-8 py-6 animate-pulse-glow"
+            className="bg-gradient-primary hover:opacity-90 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 transition-all hover:scale-105 animate-fade-in"
           >
             {t.hero.cta}
-            <ArrowDown className="ml-2 h-5 w-5" />
+            <ArrowDown className="ml-2 h-4 w-4 sm:h-5 sm:w-5 animate-bounce" />
           </Button>
         </div>
       </section>
 
       {/* Pickup Info Section */}
-      <section className="py-12 px-4 bg-primary/10 border-y-2 border-primary/20">
-        <div className="container mx-auto text-center">
-          <h3 className="text-3xl font-bold mb-4 text-primary">
+      <section className="py-8 sm:py-12 px-4 bg-primary/10 border-y-2 border-primary/20 animate-fade-in">
+        <div className="container mx-auto text-center max-w-3xl">
+          <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-primary">
             {t.pickup.title}
           </h3>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-base sm:text-lg text-muted-foreground px-2">
             {t.pickup.description}
           </p>
         </div>
       </section>
 
       {/* Pizzas Section */}
-      <section id="pizzas" className="py-20 px-4">
+      <section id="pizzas" className="py-12 sm:py-20 px-4">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-foreground animate-fade-in">
             {t.sections.pizzas}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {pizzas.map((product) => (
               <ProductCard
                 key={product.id}
@@ -93,12 +93,12 @@ const Index = () => {
       </section>
 
       {/* Drinks Section */}
-      <section id="drinks" className="py-20 px-4 bg-muted/30">
+      <section id="drinks" className="py-12 sm:py-20 px-4 bg-muted/30">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-foreground animate-fade-in">
             {t.sections.drinks}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {drinks.map((product) => (
               <ProductCard
                 key={product.id}
@@ -111,12 +111,12 @@ const Index = () => {
       </section>
 
       {/* Combos Section */}
-      <section id="combos" className="py-20 px-4">
+      <section id="combos" className="py-12 sm:py-20 px-4">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-foreground animate-fade-in">
             {t.sections.combos}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {combos.map((product) => (
               <ProductCard
                 key={product.id}
@@ -129,12 +129,12 @@ const Index = () => {
       </section>
 
       {/* Promos Section */}
-      <section id="promos" className="py-20 px-4 bg-muted/30">
+      <section id="promos" className="py-12 sm:py-20 px-4 bg-muted/30">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-foreground animate-fade-in">
             {t.sections.promos}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {promos.map((product) => (
               <ProductCard
                 key={product.id}

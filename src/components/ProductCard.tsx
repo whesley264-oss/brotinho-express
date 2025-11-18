@@ -19,6 +19,8 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
         <img
           src={product.image}
           alt={product.name[language]}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
         {product.originalPrice && (

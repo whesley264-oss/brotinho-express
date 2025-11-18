@@ -130,6 +130,18 @@ export const products: Product[] = [
     category: 'drink'
   },
   {
+    id: 'drink-grape',
+    name: { pt: 'Refrigerante de Uva 250ml', en: 'Grape Soda 250ml', es: 'Refresco de Uva 250ml' },
+    description: { 
+      pt: 'Refrigerante gelado',
+      en: 'Cold soda',
+      es: 'Refresco frío'
+    },
+    price: 4.00,
+    image: '/drinks/grape.jpg',
+    category: 'drink'
+  },
+  {
     id: 'drink-water',
     name: { pt: 'Água Mineral 500ml', en: 'Mineral Water 500ml', es: 'Agua Mineral 500ml' },
     description: { 

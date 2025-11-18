@@ -52,6 +52,7 @@ export const translations = {
       paymentCash: "Dinheiro",
       paymentCard: "Cartão",
       paymentPix: "PIX",
+      pickupTime: "Horário de retirada (opcional)",
       notes: "Observações",
       send: "Enviar Pedido"
     }
@@ -107,6 +108,7 @@ export const translations = {
       paymentCash: "Cash",
       paymentCard: "Card",
       paymentPix: "PIX",
+      pickupTime: "Pickup time (optional)",
       notes: "Notes",
       send: "Send Order"
     }
@@ -162,6 +164,7 @@ export const translations = {
       paymentCash: "Efectivo",
       paymentCard: "Tarjeta",
       paymentPix: "PIX",
+      pickupTime: "Hora de recogida (opcional)",
       notes: "Observaciones",
       send: "Enviar Pedido"
     }
