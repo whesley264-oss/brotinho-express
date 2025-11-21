@@ -3,7 +3,7 @@ export type Language = 'pt' | 'en' | 'es';
 export const translations = {
   pt: {
     hero: {
-      title: "Brotinhos Deliciosos",
+      title: "Brotinhos Express",
       subtitle: "As melhores mini pizzas da cidade, feitas com ingredientes frescos e muito amor!",
       cta: "Ver Cardápio"
     },
@@ -58,7 +58,7 @@ export const translations = {
   },
   en: {
     hero: {
-      title: "Delicious Mini Pizzas",
+      title: "Brotinhos Express",
       subtitle: "The best mini pizzas in town, made with fresh ingredients and lots of love!",
       cta: "View Menu"
     },
@@ -113,7 +113,7 @@ export const translations = {
   },
   es: {
     hero: {
-      title: "Mini Pizzas Deliciosas",
+      title: "Brotinhos Express",
       subtitle: "¡Las mejores mini pizzas de la ciudad, hechas con ingredientes frescos y mucho amor!",
       cta: "Ver Menú"
     },
