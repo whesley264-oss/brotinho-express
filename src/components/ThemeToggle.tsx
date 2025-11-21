@@ -3,12 +3,22 @@ import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 
 export const ThemeToggle = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
   useEffect(() => {
     const root = window.document.documentElement;
-    const initialTheme = root.classList.contains('dark') ? 'dark' : 'light';
-    setTheme(initialTheme);
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      root.classList.remove('light', 'dark');
+      root.classList.add(savedTheme);
+      setTheme(savedTheme);
+    } else {
+      // Default to dark theme
+      root.classList.add('dark');
+      setTheme('dark');
+      localStorage.setItem('theme', 'dark');
+    }
   }, []);
 
   const toggleTheme = () => {
@@ -18,6 +28,7 @@ export const ThemeToggle = () => {
     root.classList.remove('light', 'dark');
     root.classList.add(newTheme);
     setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
   };
 
   return (
