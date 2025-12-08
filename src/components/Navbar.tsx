@@ -1,9 +1,11 @@
-import { ShoppingCart, Pizza } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ShoppingCart, Pizza, User, LogOut, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageToggle } from './LanguageToggle';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
+import { useAuth } from '@/hooks/useAuth';
 import { Badge } from '@/components/ui/badge';
 
 interface NavbarProps {
@@ -13,6 +15,7 @@ interface NavbarProps {
 export const Navbar = ({ onCartClick }: NavbarProps) => {
   const { t } = useLanguage();
   const { itemCount } = useCart();
+  const { user, isAdmin, signOut } = useAuth();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -62,6 +65,32 @@ export const Navbar = ({ onCartClick }: NavbarProps) => {
           <div className="flex items-center gap-1 md:gap-2">
             <ThemeToggle />
             <LanguageToggle />
+            
+            {user ? (
+              <div className="flex items-center gap-1">
+                {isAdmin && (
+                  <Button variant="ghost" size="sm" asChild className="hidden sm:flex">
+                    <Link to="/admin">
+                      <Settings className="h-4 w-4 mr-1" />
+                      Admin
+                    </Link>
+                  </Button>
+                )}
+                <Button variant="ghost" size="sm" onClick={signOut}>
+                  <LogOut className="h-4 w-4" />
+                </Button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-1">
+                <Button variant="ghost" size="sm" asChild>
+                  <Link to="/auth">
+                    <User className="h-4 w-4 mr-1" />
+                    <span className="hidden sm:inline">Entrar</span>
+                  </Link>
+                </Button>
+              </div>
+            )}
+            
             <Button
               onClick={onCartClick}
               size="sm"
