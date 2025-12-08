@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { useProducts, useCategories, useAddons, useDeleteProduct, useDeleteCategory, useDeleteAddon, Product, Category, Addon } from '@/hooks/useProducts';
 import { useUsers, UserWithRole, useDeleteUserRole } from '@/hooks/useUsers';
+import { useOrders, useUpdateOrder, Order } from '@/hooks/useOrders';
+import { useAnalytics } from '@/hooks/useAnalytics';
+import { DashboardStats } from '@/components/admin/DashboardStats';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -23,8 +26,24 @@ import {
   FolderOpen, 
   Package,
   CirclePlus,
-  Home
+  Home,
+  LayoutDashboard,
+  ShoppingBag,
+  Check,
+  Clock,
+  X
 } from 'lucide-react';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { useToast } from '@/hooks/use-toast';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -44,10 +63,15 @@ const Admin = () => {
   const { data: categories, isLoading: categoriesLoading } = useCategories();
   const { data: addons, isLoading: addonsLoading } = useAddons();
   const { data: users, isLoading: usersLoading } = useUsers();
+  const { data: orders, isLoading: ordersLoading } = useOrders();
+  const { data: analytics, isLoading: analyticsLoading } = useAnalytics();
 
   const deleteProduct = useDeleteProduct();
   const deleteCategory = useDeleteCategory();
   const deleteAddon = useDeleteAddon();
+  const deleteUserRole = useDeleteUserRole();
+  const updateOrder = useUpdateOrder();
+  const { toast } = useToast();
   const deleteUserRole = useDeleteUserRole();
 
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -103,7 +127,33 @@ const Admin = () => {
   const canManageCategories = userRole?.can_manage_categories || isSuperAdmin;
   const canManageUsers = userRole?.can_manage_users || isSuperAdmin;
 
-  if (authLoading) {
+  const handleOrderStatusChange = (orderId: string, status: string) => {
+    updateOrder.mutate({ id: orderId, status }, {
+      onSuccess: () => {
+        toast({ title: `Pedido atualizado para: ${status}` });
+      },
+    });
+  };
+
+  const getStatusBadge = (status: string) => {
+    const variants: Record<string, 'default' | 'secondary' | 'destructive' | 'outline'> = {
+      pending: 'outline',
+      confirmed: 'secondary',
+      preparing: 'default',
+      ready: 'default',
+      completed: 'secondary',
+      cancelled: 'destructive',
+    };
+    const labels: Record<string, string> = {
+      pending: 'Pendente',
+      confirmed: 'Confirmado',
+      preparing: 'Preparando',
+      ready: 'Pronto',
+      completed: 'Concluído',
+      cancelled: 'Cancelado',
+    };
+    return <Badge variant={variants[status] || 'outline'}>{labels[status] || status}</Badge>;
+  };
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -167,25 +217,99 @@ const Admin = () => {
 
       {/* Content */}
       <main className="container mx-auto px-4 py-6">
-        <Tabs defaultValue="products" className="space-y-6">
-          <TabsList className="grid w-full max-w-md grid-cols-4">
+        <Tabs defaultValue="dashboard" className="space-y-6">
+          <TabsList className="grid w-full max-w-2xl grid-cols-6">
+            <TabsTrigger value="dashboard">
+              <LayoutDashboard className="h-4 w-4 mr-2" />
+              <span className="hidden sm:inline">Dashboard</span>
+            </TabsTrigger>
+            <TabsTrigger value="orders">
+              <ShoppingBag className="h-4 w-4 mr-2" />
+              <span className="hidden sm:inline">Pedidos</span>
+            </TabsTrigger>
             <TabsTrigger value="products" disabled={!canManageProducts}>
               <Package className="h-4 w-4 mr-2" />
-              Produtos
+              <span className="hidden sm:inline">Produtos</span>
             </TabsTrigger>
             <TabsTrigger value="categories" disabled={!canManageCategories}>
               <FolderOpen className="h-4 w-4 mr-2" />
-              Categorias
+              <span className="hidden sm:inline">Categorias</span>
             </TabsTrigger>
             <TabsTrigger value="addons" disabled={!canManageProducts}>
               <CirclePlus className="h-4 w-4 mr-2" />
-              Adicionais
+              <span className="hidden sm:inline">Adicionais</span>
             </TabsTrigger>
             <TabsTrigger value="users" disabled={!canManageUsers}>
               <Users className="h-4 w-4 mr-2" />
-              Usuários
+              <span className="hidden sm:inline">Usuários</span>
             </TabsTrigger>
           </TabsList>
+
+          {/* Dashboard Tab */}
+          <TabsContent value="dashboard">
+            <DashboardStats 
+              analytics={analytics} 
+              orders={orders || []} 
+              products={products || []}
+              isLoading={analyticsLoading || ordersLoading || productsLoading}
+            />
+          </TabsContent>
+
+          {/* Orders Tab */}
+          <TabsContent value="orders" className="space-y-4">
+            <h2 className="text-2xl font-bold">Pedidos</h2>
+            <Card>
+              <CardContent className="p-0">
+                {ordersLoading ? (
+                  <div className="flex justify-center p-8">
+                    <Loader2 className="h-6 w-6 animate-spin" />
+                  </div>
+                ) : orders && orders.length > 0 ? (
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Cliente</TableHead>
+                        <TableHead>Telefone</TableHead>
+                        <TableHead>Total</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Data</TableHead>
+                        <TableHead className="text-right">Ações</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {orders.map((order) => (
+                        <TableRow key={order.id}>
+                          <TableCell className="font-medium">{order.customer_name}</TableCell>
+                          <TableCell>{order.customer_phone}</TableCell>
+                          <TableCell>R$ {order.total.toFixed(2)}</TableCell>
+                          <TableCell>{getStatusBadge(order.status)}</TableCell>
+                          <TableCell>{new Date(order.created_at).toLocaleDateString('pt-BR')}</TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex justify-end gap-1">
+                              <Button variant="ghost" size="icon" onClick={() => handleOrderStatusChange(order.id, 'confirmed')} title="Confirmar">
+                                <Check className="h-4 w-4 text-green-500" />
+                              </Button>
+                              <Button variant="ghost" size="icon" onClick={() => handleOrderStatusChange(order.id, 'preparing')} title="Preparando">
+                                <Clock className="h-4 w-4 text-yellow-500" />
+                              </Button>
+                              <Button variant="ghost" size="icon" onClick={() => handleOrderStatusChange(order.id, 'completed')} title="Concluído">
+                                <Package className="h-4 w-4 text-blue-500" />
+                              </Button>
+                              <Button variant="ghost" size="icon" onClick={() => handleOrderStatusChange(order.id, 'cancelled')} title="Cancelar">
+                                <X className="h-4 w-4 text-destructive" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                ) : (
+                  <p className="text-center text-muted-foreground p-8">Nenhum pedido encontrado.</p>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
 
           {/* Products Tab */}
           <TabsContent value="products" className="space-y-4">
