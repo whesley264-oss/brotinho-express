@@ -54,6 +54,16 @@ export const translations = {
       paymentPix: "PIX",
       notes: "Observações",
       send: "Enviar Pedido"
+    },
+    contact: {
+      title: "Entre em Contato",
+      name: "Seu Nome",
+      namePlaceholder: "Digite seu nome",
+      message: "Mensagem",
+      messagePlaceholder: "Digite sua mensagem...",
+      whatsapp: "Enviar via WhatsApp",
+      instagram: "Ir para Instagram",
+      fillFields: "Preencha seu nome e mensagem"
     }
   },
   en: {
@@ -109,6 +119,16 @@ export const translations = {
       paymentPix: "PIX",
       notes: "Notes",
       send: "Send Order"
+    },
+    contact: {
+      title: "Contact Us",
+      name: "Your Name",
+      namePlaceholder: "Enter your name",
+      message: "Message",
+      messagePlaceholder: "Type your message...",
+      whatsapp: "Send via WhatsApp",
+      instagram: "Go to Instagram",
+      fillFields: "Please fill in your name and message"
     }
   },
   es: {
@@ -164,6 +184,16 @@ export const translations = {
       paymentPix: "PIX",
       notes: "Observaciones",
       send: "Enviar Pedido"
+    },
+    contact: {
+      title: "Contáctanos",
+      name: "Tu Nombre",
+      namePlaceholder: "Ingresa tu nombre",
+      message: "Mensaje",
+      messagePlaceholder: "Escribe tu mensaje...",
+      whatsapp: "Enviar por WhatsApp",
+      instagram: "Ir a Instagram",
+      fillFields: "Por favor completa tu nombre y mensaje"
     }
   }
 };
