@@ -63,7 +63,11 @@ export const translations = {
       messagePlaceholder: "Digite sua mensagem...",
       whatsapp: "Enviar via WhatsApp",
       instagram: "Ir para Instagram",
-      fillFields: "Preencha seu nome e mensagem"
+      fillFields: "Preencha seu nome e mensagem",
+      hours: "Horário de Funcionamento",
+      weekdays: "Segunda a Sexta",
+      weekends: "Sábado e Domingo",
+      payment: "Formas de Pagamento"
     }
   },
   en: {
@@ -128,7 +132,11 @@ export const translations = {
       messagePlaceholder: "Type your message...",
       whatsapp: "Send via WhatsApp",
       instagram: "Go to Instagram",
-      fillFields: "Please fill in your name and message"
+      fillFields: "Please fill in your name and message",
+      hours: "Opening Hours",
+      weekdays: "Monday to Friday",
+      weekends: "Saturday and Sunday",
+      payment: "Payment Methods"
     }
   },
   es: {
@@ -193,7 +201,11 @@ export const translations = {
       messagePlaceholder: "Escribe tu mensaje...",
       whatsapp: "Enviar por WhatsApp",
       instagram: "Ir a Instagram",
-      fillFields: "Por favor completa tu nombre y mensaje"
+      fillFields: "Por favor completa tu nombre y mensaje",
+      hours: "Horario de Atención",
+      weekdays: "Lunes a Viernes",
+      weekends: "Sábado y Domingo",
+      payment: "Métodos de Pago"
     }
   }
 };
