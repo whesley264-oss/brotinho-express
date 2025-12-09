@@ -10,7 +10,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 import { products } from '@/lib/products';
 import { Product, Addon } from '@/types/product';
-import { ArrowDown, Instagram, MessageCircle, Send } from 'lucide-react';
+import { ArrowDown, Instagram, MessageCircle, Clock, CreditCard } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Index = () => {
@@ -188,54 +188,95 @@ const Index = () => {
 
       {/* Contact Section */}
       <section id="contact" className="py-10 sm:py-16 md:py-20 px-4 scroll-mt-20">
-        <div className="container mx-auto max-w-2xl">
+        <div className="container mx-auto max-w-5xl">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12 text-foreground animate-fade-in-up">
             {t.contact.title}
           </h2>
           
-          <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-elegant animate-scale-in">
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  {t.contact.name}
-                </label>
-                <Input
-                  value={contactName}
-                  onChange={(e) => setContactName(e.target.value)}
-                  placeholder={t.contact.namePlaceholder}
-                  className="w-full"
-                />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            {/* Left - Contact Form */}
+            <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 shadow-elegant animate-scale-in">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    {t.contact.name}
+                  </label>
+                  <Input
+                    value={contactName}
+                    onChange={(e) => setContactName(e.target.value)}
+                    placeholder={t.contact.namePlaceholder}
+                    className="w-full"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    {t.contact.message}
+                  </label>
+                  <Textarea
+                    value={contactMessage}
+                    onChange={(e) => setContactMessage(e.target.value)}
+                    placeholder={t.contact.messagePlaceholder}
+                    rows={4}
+                    className="w-full resize-none"
+                  />
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                  <Button
+                    onClick={handleWhatsApp}
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white transition-all hover:scale-105"
+                  >
+                    <MessageCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    {t.contact.whatsapp}
+                  </Button>
+                  
+                  <Button
+                    onClick={handleInstagram}
+                    className="flex-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white transition-all hover:scale-105"
+                  >
+                    <Instagram className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    {t.contact.instagram}
+                  </Button>
+                </div>
               </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  {t.contact.message}
-                </label>
-                <Textarea
-                  value={contactMessage}
-                  onChange={(e) => setContactMessage(e.target.value)}
-                  placeholder={t.contact.messagePlaceholder}
-                  rows={4}
-                  className="w-full resize-none"
-                />
+            </div>
+
+            {/* Right - Hours & Payment */}
+            <div className="flex flex-col gap-6">
+              {/* Operating Hours */}
+              <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 shadow-elegant animate-scale-in" style={{ animationDelay: '0.1s' }}>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                    <Clock className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground">{t.contact.hours}</h3>
+                </div>
+                <div className="space-y-2 text-muted-foreground">
+                  <p className="flex justify-between">
+                    <span>{t.contact.weekdays}</span>
+                    <span className="font-medium text-foreground">18:00 - 23:00</span>
+                  </p>
+                  <p className="flex justify-between">
+                    <span>{t.contact.weekends}</span>
+                    <span className="font-medium text-foreground">17:00 - 00:00</span>
+                  </p>
+                </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                <Button
-                  onClick={handleWhatsApp}
-                  className="flex-1 bg-green-600 hover:bg-green-700 text-white transition-all hover:scale-105"
-                >
-                  <MessageCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  {t.contact.whatsapp}
-                </Button>
-                
-                <Button
-                  onClick={handleInstagram}
-                  className="flex-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white transition-all hover:scale-105"
-                >
-                  <Instagram className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  {t.contact.instagram}
-                </Button>
+              {/* Payment Methods */}
+              <div className="bg-card border border-border rounded-2xl p-4 sm:p-6 shadow-elegant animate-scale-in" style={{ animationDelay: '0.2s' }}>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                    <CreditCard className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground">{t.contact.payment}</h3>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <span className="px-4 py-2 bg-muted rounded-full text-sm font-medium text-foreground">💵 {t.checkout.paymentCash}</span>
+                  <span className="px-4 py-2 bg-muted rounded-full text-sm font-medium text-foreground">💳 {t.checkout.paymentCard}</span>
+                  <span className="px-4 py-2 bg-muted rounded-full text-sm font-medium text-foreground">📱 {t.checkout.paymentPix}</span>
+                </div>
               </div>
             </div>
           </div>
